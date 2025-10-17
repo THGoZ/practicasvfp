@@ -140,3 +140,15 @@ FUNCTION TestConnection(pINIFile as String, pDisplayMessage as Boolean) as Boole
     
     RETURN .F.
 ENDFUNC
+
+FUNCTION BETWEENCOUNTS(tcString, tcLow, tcHigh)
+    LOCAL i, lnLen, lcChar
+    lnLen = LEN(tcString)
+    FOR i = 1 TO lnLen
+        lcChar = SUBSTR(tcString, i, 1)
+        IF lcChar >= tcLow AND lcChar <= tcHigh
+            RETURN .T.
+        ENDIF
+    NEXT
+    RETURN .F.
+ENDFUNC

@@ -152,3 +152,23 @@ FUNCTION BETWEENCOUNTS(tcString, tcLow, tcHigh)
     NEXT
     RETURN .F.
 ENDFUNC
+
+FUNCTION TableExists(tcTable, tnConn)
+    LOCAL cSQL, nRes
+    cSQL = "SHOW TABLES LIKE '" + tcTable + "'"
+    nRes = SQLEXEC(tnConn, cSQL, "curChk")
+    IF nRes > 0 AND RECCOUNT("curChk") > 0
+        USE IN curChk
+        RETURN .T.
+    ENDIF
+    RETURN .F.
+ENDFUNC
+
+FUNCTION RunSQL(tcSql, tnConn)
+    LOCAL nRes
+    nRes = SQLEXEC(tnConn, tcSql)
+    IF nRes < 0
+        MESSAGEBOX("?? SQL Error: " + MESSAGE(), 48, "Alerta")
+    ENDIF
+    RETURN nRes
+ENDFUNC

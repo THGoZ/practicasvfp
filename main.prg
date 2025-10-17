@@ -7,7 +7,8 @@ CD JUSTPATH(SYS(16))
 
 SET PROCEDURE TO utilities ADDITIVE
 SET PROCEDURE TO account_utilities ADDITIVE
-LOCAL nHandle, lcRetry, nSuccess
+SET PROCEDURE TO migration_helper ADDITIVE
+LOCAL nHandle, lcRetry, nSuccess, lcMigrationResult
 PUBLIC fConfigINI, pConfigINI, cLoggedIn, cCurrentUser
 fConfigINI = "config.ini"
 pConfigINI = "profile.ini"
@@ -20,6 +21,7 @@ DO WHILE .T.
     IF nSuccess > 0
         PUBLIC gnDBHandle
         gnDBHandle = nSuccess
+        MigrateMYSQL(gnDBHandle)
         EXIT 
     ELSE
         lcRetry = MESSAGEBOX("Conexion a la base de datos fallida" + CHR(13) + ;

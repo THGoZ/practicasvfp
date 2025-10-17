@@ -7,11 +7,13 @@ CD JUSTPATH(SYS(16))
 
 SET PROCEDURE TO utilities ADDITIVE
 SET PROCEDURE TO account_utilities ADDITIVE
+SET PROCEDURE TO migration_helper ADDITIVE
 LOCAL nHandle, lcRetry, nSuccess
 PUBLIC fConfigINI, pConfigINI, cLoggedIn, cCurrentUser
 fConfigINI = "config.ini"
 pConfigINI = "profile.ini"
 cLoggedIn = .F.
+cCurrentUser = ""
 
 DO WHILE .T.
     nSuccess = ConnectToMySQL(fConfigINI)
