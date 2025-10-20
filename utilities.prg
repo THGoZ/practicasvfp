@@ -172,3 +172,8 @@ FUNCTION RunSQL(tcSql, tnConn)
     ENDIF
     RETURN nRes
 ENDFUNC
+
+FUNCTION IsNumeric(cValue)
+    cValue = ALLTRIM(cValue)
+    RETURN !EMPTY(cValue) AND EMPTY(CHRTRAN(cValue, "0123456789.", ""))
+ENDFUNC

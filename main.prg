@@ -9,7 +9,7 @@ SET PROCEDURE TO utilities ADDITIVE
 SET PROCEDURE TO account_utilities ADDITIVE
 SET PROCEDURE TO migration_helper ADDITIVE
 LOCAL nHandle, lcRetry, nSuccess, lcMigrationResult
-PUBLIC fConfigINI, pConfigINI, cLoggedIn, cCurrentUser
+PUBLIC fConfigINI, pConfigINI, cLoggedIn, cCurrentUser, cCurrentUserID
 fConfigINI = "config.ini"
 pConfigINI = "profile.ini"
 cLoggedIn = .F.
