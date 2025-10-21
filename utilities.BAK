@@ -173,7 +173,15 @@ FUNCTION RunSQL(tcSql, tnConn)
     RETURN nRes
 ENDFUNC
 
-FUNCTION IsNumeric(cValue as Number)
+FUNCTION IsNumeric(cValue)
     cValue = ALLTRIM(cValue)
     RETURN !EMPTY(cValue) AND EMPTY(CHRTRAN(cValue, "0123456789.", ""))
+ENDFUNC
+
+FUNCTION getSortDirection(pCurrentSortBy, pCurrentSortOrder, pSortBy)
+	IF pCurrentSortBy = pSortBy AND pCurrentSortOrder = "asc"
+		RETURN "desc"
+	ELSE
+		RETURN "asc"
+	ENDIF
 ENDFUNC

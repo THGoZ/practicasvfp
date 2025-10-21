@@ -18,6 +18,10 @@ FUNCTION ReadINI(pSection as String, pKey as String, pINIFile as String) as Stri
     RETURN ALLTRIM(LEFT(xRetVal, AT(CHR(0), xRetVal) - 1))
 ENDFUNC
 
+FUNCTION getCurrentPath()
+	RETURN ADDBS(SYS(5) + SYS(2003))
+ENDFUNC
+
 FUNCTION WriteINI(pINIFile AS String, pSection AS String, pKey AS String, pValue AS String) AS Logical
     LOCAL lcIniFile, lnResult
     
@@ -176,4 +180,12 @@ ENDFUNC
 FUNCTION IsNumeric(cValue)
     cValue = ALLTRIM(cValue)
     RETURN !EMPTY(cValue) AND EMPTY(CHRTRAN(cValue, "0123456789.", ""))
+ENDFUNC
+
+FUNCTION getSortDirection(pCurrentSortBy, pCurrentSortOrder, pSortBy)
+	IF pCurrentSortBy = pSortBy AND pCurrentSortOrder = "asc"
+		RETURN "desc"
+	ELSE
+		RETURN "asc"
+	ENDIF
 ENDFUNC
